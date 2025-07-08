@@ -1,1 +1,34 @@
-yo me encargue de codificar "listar"
+<?php
+$conexion = new mysqli("localhost", "root", "", "visitas_db");
+if ($conexion->connect_error) die("Error de conexión");
+
+$where = [];
+if (!empty($_GET['fecha'])) {
+  $fecha = $_GET['fecha'];
+  $where[] = "DATE(hora_ingreso) = '$fecha'";
+}
+if (!empty($_GET['persona'])) {
+  $persona = $_GET['persona'];
+  $where[] = "persona LIKE '%$persona%'";
+}
+$condicion = $where ? 'WHERE ' . implode(' AND ', $where) : '';
+
+$resultado = $conexion->query("SELECT * FROM visitas $condicion ORDER BY hora_ingreso DESC");
+
+echo "<table border='1' width='100%'><tr><th>Nombre</th><th>DNI</th><th>Motivo</th><th>Persona</th><th>Ingreso</th><th>Egreso</th><th>Acción</th></tr>";
+while($fila = $resultado->fetch_assoc()) {
+  echo "<tr>
+          <td>{$fila['nombre']}</td>
+          <td>{$fila['dni']}</td>
+          <td>{$fila['motivo']}</td>
+          <td>{$fila['persona']}</td>
+          <td>{$fila['hora_ingreso']}</td>
+          <td>{$fila['hora_egreso']}</td>
+          <td>" .
+          (is_null($fila['hora_egreso']) ? "<a href='salida.php?id={$fila['id']}'>Marcar salida</a>" : "-") .
+       "</td>
+        </tr>";
+}
+echo "</table>";
+$conexion->close();
+?>
