@@ -1,0 +1,27 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background: #f4f4f4;
+}
+h1, h2 {
+  color: #333;
+}
+form {
+  background: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+input[type="text"], input[type="date"] {
+  padding: 10px;
+  margin: 5px;
+  width: 90%;
+}
+input[type="submit"] {
+  background: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
