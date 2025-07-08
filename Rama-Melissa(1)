@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Visitas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Registro de Visitas</h1>
+  <form action="registrar.php" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre y Apellido" required>
+    <input type="text" name="dni" placeholder="DNI" required>
+    <input type="text" name="motivo" placeholder="Motivo de la visita" required>
+    <input type="text" name="persona" placeholder="Persona a quien visita" required>
+    <input type="submit" value="Registrar Ingreso">
+  </form>
+
+  <h2>Filtrar visitas</h2>
+  <form action="listar.php" method="GET">
+    <input type="date" name="fecha">
+    <input type="text" name="persona" placeholder="Persona a quien visita">
+    <input type="submit" value="Filtrar">
+  </form>
+
+  <h2>Listado de visitas</h2>
+  <iframe src="listar.php" style="width:100%; height:300px;"></iframe>
+</body>
+</html>
