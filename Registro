@@ -1,0 +1,15 @@
+<?php
+$conexion = new mysqli("localhost", "root", "", "visitas_db");
+if ($conexion->connect_error) die("Error de conexión");
+
+$nombre = $_POST['nombre'];
+$dni = $_POST['dni'];
+$motivo = $_POST['motivo'];
+$persona = $_POST['persona'];
+$hora_ingreso = date("Y-m-d H:i:s");
+
+$sql = "INSERT INTO visitas (nombre, dni, motivo, persona, hora_ingreso) VALUES ('$nombre','$dni','$motivo','$persona','$hora_ingreso')";
+$conexion->query($sql);
+$conexion->close();
+header("Location: index.html");
+?>
