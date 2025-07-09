@@ -1,0 +1,11 @@
+<?php
+$conexion = new mysqli("localhost", "root", "", "visitas_db");
+if ($conexion->connect_error) die("Error de conexión");
+
+$id = $_GET['id'];
+$hora_egreso = date("Y-m-d H:i:s");
+$sql = "UPDATE visitas SET hora_egreso = '$hora_egreso' WHERE id = $id";
+$conexion->query($sql);
+$conexion->close();
+header("Location: listar.php");
+?>
